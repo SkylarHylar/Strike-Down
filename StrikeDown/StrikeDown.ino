@@ -22,6 +22,12 @@ extern const byte playerfly[];
 extern const byte platform[];
 extern const byte platform2[];
 extern const byte platform3[];
+extern const byte bridge[];
+extern const byte dactyl[];
+extern const byte floater[];
+extern const byte bouncer[];
+extern const byte hunter[];
+extern const byte egg[];
 extern const byte font3x5[];
 extern const byte font5x7[];
 void setup(){
@@ -40,12 +46,47 @@ int playerflip = NOFLIP;
 int playergrav = 0;
 int ground = true;
 
+int floaterx = 20;
+int floatery = 20;
+int floaterline = 0;
+int floaterxv = 0;
+boolean floaterleft = false;
+int floaterflip = NOFLIP;
+int floatergrav = 0;
+boolean floategg = false;
+
+int bouncerx = 20;
+int bouncery = 20;
+int bouncergrav = 0;
+int bouncerxv = 0;
+int bouncerflip = NOFLIP;
+boolean bounceegg = false;
+
+int hunterx = 20;
+int huntery = 20;
+int huntergrav = 0;
+int hunterxv = 0;
+int hunterflip = NOFLIP;
+boolean huntegg = false;
+
+int bouncers = 0;
+int hunters = 0;
+int floaters = 0;
+
+int dactylx = 84;
+int dactyly = 20;
+
 int wait = 0;
 int stage = 0;
+int dactyltime = 450;
+int enemies = 0;
+int spawn = random(0,2);
+int spawnx = 0;
+int spawny = 0;
 
 int select = 0;
 
-int rest = 30;
+int rest = 150;
 int CPU = gb.getCpuLoad();
 int RAM = gb.getFreeRam();
 
@@ -73,8 +114,46 @@ void loop(){
         playerflip = NOFLIP;
         playergrav = 1;
 
+        floaterx = 20;
+        floatery = 20;
+        floaterline = random(4,11);
+        floaterxv = 0;
+        floaterleft = false;
+        floaterflip = NOFLIP;
+        floatergrav = 0;
+        floategg = false;
+
+        bouncerx = 20;
+        bouncery = 20;
+        bouncergrav = 0;
+        bouncerxv = 0;
+        bouncerflip = NOFLIP;
+        bounceegg = false;
+
+        hunterx = 20;
+        huntery = 20;
+        huntergrav = 0;
+        hunterxv = 0;
+        hunterflip = NOFLIP;
+        huntegg = false;
+
+        bouncers = random(0,5);
+        hunters = random(0,5);
+        floaters = random(0,5);
+
+        enemies = bouncers + hunters + floaters;
+
+        dactylx = 84;
+        dactyly = 20;
+
         wait = 0;
         stage = 1;
+        spawn = random(0,2);
+        spawnx = 0;
+        spawny = 0;
+
+        rest = 150;
+        dactyltime = 450;
 
         gb.setFrameRate(fps);
         lives = count;
